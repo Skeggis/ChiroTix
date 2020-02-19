@@ -1,0 +1,20 @@
+.collapse {
+  & .ant-collapse-header {
+    cursor: default !important;
+    height: 0px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important
+  }
+
+  & .ant-collapse {
+    cursor: default !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    border: none !important
+  }
+
+  & .ant-collapse-item{
+    border: 0px !important
+  }
+}

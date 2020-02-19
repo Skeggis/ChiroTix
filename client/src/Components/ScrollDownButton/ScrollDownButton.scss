@@ -1,0 +1,51 @@
+
+.scrollButton{
+  width: 46px;
+  height: 46px;
+  
+  & a span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 46px;
+    height: 46px;
+    margin-left: -23px;
+    border: 1px solid #fff;
+    border-radius: 100%;
+    box-sizing: border-box;
+  }
+      &__down{
+        transform: rotate(0deg);
+        transition: transform 0.3s ease
+      }
+  
+      &__up{
+        transform: rotate(180deg);
+        transition: transform 0.3s ease
+      }
+
+  & a span::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: '';
+    width: 16px;
+    height: 16px;
+    margin: -12px 0 0 -8px;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    box-sizing: border-box;
+  }
+  
+  & a{
+    transition:  all .2s ease;
+  }
+  
+  & a:hover {
+    opacity: .5;
+  }
+
+}
+

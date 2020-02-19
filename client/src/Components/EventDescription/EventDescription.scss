@@ -1,0 +1,73 @@
+@import "../../variables";
+.EventDescription{
+    &__descriptionDiv{
+        width: 100%;
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+
+    &__description{
+        margin: 50px 0 50px 0;
+        font-size: $subTitleFontSize*0.85;
+        color: $titleFontColor;
+        line-height: $subTitleFontSize*1.5;
+        color: $normalFontColor;
+        padding-left: 3.5%;
+    }
+
+    h3{
+        font-weight: bold;
+        font-size: $subTitleFontSize*1.25;
+        color: $normalFontColor;
+    }
+    
+    &__speakersDiv{
+        width: 100%;
+        padding-top: 50px;
+        padding-bottom: 85px;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 50px;
+
+        @media(min-width: 700px){
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media(min-width: 1000px){
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    &__speakerDiv{
+        display:flex;
+        flex-direction: column;
+        flex: 1;
+        align-items: center;
+    }
+
+    &__speakerImage{
+        border-radius: 50%;
+        height: 200px;
+        width: 200px;
+    }
+
+    h4{
+        font-weight: 300;
+        margin-top: 10px;
+        font-size: $subTitleFontSize;
+        color: $normalFontColor;
+        text-align: center;
+        width: 100%;
+    }
+    
+    &__tagsDiv{
+        width: 100%;
+        padding-top: 50px;
+        padding-bottom: 45px;
+    }
+    
+    &__tags{
+        padding-top:15px;
+    }
+}
+

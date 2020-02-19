@@ -1,0 +1,119 @@
+@import "../../variables";
+.BigAd {
+  width: 100%;
+  height: calc(100vh - 100px);
+  background-size: 100% 100%;
+  background-size: cover;
+  background-position: 50% 50%;
+  // background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  flex: 1 1 auto;
+  // padding: 25px 5% 25px 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  &__soldOutDiv{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__flexDiv{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  &__bannerDiv {
+    // background-color: rgba($color: $barBackground, $alpha: 0.5);
+    //  padding-left: 9%;
+    // overflow: auto;
+    margin-bottom: 20px;
+    display: inline-block;
+    //  padding-right: 100px;
+    max-width: 85.5%;
+    //  border-radius: 7px;
+    // margin-left: -5px;
+    margin-left: 30px;
+  }
+
+  //Hide the scrollbar for the event title if it is too long for the bannerDiv
+  ::-webkit-scrollbar {
+    width: 0px; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+  }
+
+  &__eventTitle {
+    text-shadow: $textShadow;
+    color: $titleFontColor;
+    font-size: $titleFontSize;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__soldOutTitle{
+    text-shadow: $textShadow;
+    color: $titleFontColor;
+    font-size: $titleFontSize*1.75;
+    margin-bottom: -2.5%;
+    transform: rotate(-20deg);
+  }
+
+  &__subTitle {
+    text-shadow: $textShadow;
+    font-size: $titleFontSize * 0.4;
+    color: $titleFontColor;
+    font-weight: $subTitleWeight;
+    margin-left: 5px;
+  }
+
+  &__organizationTitleDiv {
+    flex: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 15px 15px 0 0;
+  }
+
+  &__organizationTitle {
+    font-size: $smallerTitleFontSize * 1.25;
+    color: rgba($color: $titleFontColor, $alpha: 0.25);
+  }
+}
+
+// .ant-skelelton {
+//     height: 100%;
+// }
+
+// .ant-skeleton-with-avatar{
+//     height: 100%
+// }
+
+// .ant-skeleton-active{
+//     height: 100%
+// }
+
+// .ant-skeleton-header{
+//     height: 100%;
+//     padding: 0;
+//     vertical-align: center
+// }
+
+// .ant-skeleton-avatar {
+//     height: 100%
+// }
+
+// .ant-skeleton-avatar-lg{
+//     height: 100%;
+// }
+
+// .ant-skeleton-avatar-square{
+//     height: 100%;
+// }

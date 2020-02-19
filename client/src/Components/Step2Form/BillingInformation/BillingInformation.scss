@@ -1,0 +1,29 @@
+@import "../../../variables";
+.BillingInformation{
+    &__buyerInformationDiv{
+        display: grid;
+        grid-template-columns: 1fr 10fr;
+    }
+
+    &__checkboxDiv{
+        display:flex;
+        flex-direction: row;
+    }
+
+    &__clickable:hover{
+        cursor: pointer;
+    }
+
+    & .react-tel-input{
+        height: 41px;
+    }
+
+    & .form-control{
+        height: 100%;
+        width: 100%
+    }
+}
+
+.themeColor{
+    color: $barBackground
+}

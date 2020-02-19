@@ -1,0 +1,79 @@
+.searchBar {
+
+  & .ant-card-body{
+    padding-bottom: 10px
+  }
+  width: 100%;
+  max-width: 700px;
+  margin: 0px auto;
+  @media(min-width: 700px){
+    width: 90%;
+    margin: 30px auto 10px;
+  }
+
+  
+  
+  &__card {
+    border-radius: 5px;
+    padding: 30px;
+    transition: background-color .4s ease;
+
+    &--hovering{
+      background-color: white;
+    }
+
+    &__input {
+      width: 100%;
+      margin-bottom: 20px;
+
+      & .ant-btn{
+        border-radius: 0 20px 20px 0;
+      }
+
+      & .ant-input-group-addon{
+        background: none;
+        
+        & button{
+          background: none
+        }
+      }
+    }
+
+    &__input .ant-input {
+      border-radius: 20px;
+      padding: 0 15px;
+      background: none;
+      color: white
+    }
+
+    &__input--hovering .ant-input{
+      border-radius: 20px;
+      padding: 0 15px;
+      background: none;
+      color: black
+    }
+
+    &__mainFilters {
+ 
+
+      &__filter {
+        width: 100%;
+      }
+    }
+
+    &__divider{
+      margin-top: 10px;
+      margin-bottom: 0px;
+    }
+  }
+}
+
+
+.searchBar .ant-card{
+  cursor: default;
+}
+
+
+.searchBar .ReactCollapse--collapse {
+  transition: height 300ms;
+}

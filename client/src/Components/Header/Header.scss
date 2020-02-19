@@ -1,0 +1,38 @@
+@import "../../variables";
+.header{
+  height: $headerHeight;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+  background-color: $barBackground;
+
+  &--eventPage{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: $headerHeight;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 100;
+    text-shadow: $textShadow;
+  }
+
+  &--ticketsPage{
+    position: sticky;
+    top: 0;
+    height: $headerHeight;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 100;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+    background: $barBackground;
+  }
+}
+

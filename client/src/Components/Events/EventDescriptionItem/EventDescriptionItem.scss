@@ -1,0 +1,80 @@
+@import '../../../variables';
+
+.eventDescItem{
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  height: 450px;
+  width: 100%;
+  display: flex;
+  position: 'absolute';
+
+  // @media(min-width: 1200px){
+  //   min-height: 550px;
+  // }
+
+  // @media(min-width: 1600px){
+  //   min-height: 650px;
+  // }
+
+  &__imageWrapper{
+    position: relative;
+    width: 70%;
+    height: 100%;
+
+    @media(max-width: 1200px){
+      width: 50%
+    }
+  }
+
+  &__image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  
+  }
+
+  &__imageText{
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    justify-content: flex-end;
+    padding: 10px;
+    flex-direction: column;
+    color: white;
+  }
+
+  &__contentWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 30%;
+    padding: 20px;
+
+    @media(max-width: 1200px){
+      width: 50%
+    }
+  }
+
+
+  &__actionsWrapper{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  &__overlay{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-shadow: $textShadow;
+   // background-color: rgba($color: #000000, $alpha: .2);
+  }
+
+}

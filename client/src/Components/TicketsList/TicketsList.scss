@@ -1,0 +1,74 @@
+@import "../../variables";
+.TicketsList{
+    &__listRow{
+        width: 100%;
+        
+    }
+    
+    &__ticketInfoTitle{
+        font-size: $subTitleFontSize;
+    }
+    
+    &__ticketTypeInfo{
+        font-size: $subTitleFontSize*0.8;
+    }
+    
+    &__amountDiv{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    &__amount{
+        margin: 0 10px 0 10px;
+        // font-size: $subTitleFontSize*1.2;
+    }
+
+    &__soldOutTitle{
+        font-size: $subTitleFontSize;
+    }
+
+    .rightAlign{
+        text-align: right;
+    }
+
+    .centerAlign{
+        text-align: center;
+    }
+    
+}
+
+
+.TicketsList--mobile{
+
+    &__container{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    &__label{
+        font-size: 18px;
+        font-weight: 600;
+        margin: 5px 0
+    }
+
+    &__item{
+        font-weight: 400;
+    }
+    
+    &__totalContainer{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        padding: 0 10px
+    }
+
+    &__totalItem{
+        
+    }
+}
+
+
+

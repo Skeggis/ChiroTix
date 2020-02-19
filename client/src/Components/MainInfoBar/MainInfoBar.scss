@@ -1,0 +1,91 @@
+@import "../../variables";
+
+.MainInfoBar{
+    background-color: $barBackground;
+    width: 100%;
+    min-height: 100px;
+    max-height: 175px;
+    padding: 10px 0 10px 0;
+    display: flex;
+    align-items: center;
+
+    &__bar{
+        width: 100%;
+        // margin: 0 0 0 20%;
+    }
+
+    &__colDiv{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: stretch;
+        height: 100%;
+        margin: '0px 10px'
+    }
+
+    &__valueDiv{
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    &__nameDiv{
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    &__colDiv h3, h2{
+        color: $titleFontColor;
+        font-weight: 200;
+    }
+
+    &__colDiv h3{
+        font-size: $subTitleFontSize*(3/4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        margin-top: $subTitleFontSize*(1/16);
+
+    }
+
+    &__colDiv h2{
+        font-size: $subTitleFontSize;
+        font-weight: 300;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        margin-right: 12px;
+        letter-spacing: 2px;
+    }
+
+    &__buttonDiv{
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    $buttonWidth: 8rem;
+    &__button{
+        //This is the proportions we want:
+        // width: 125px;
+        // height: 50px;
+
+
+        width: $buttonWidth;
+        min-width: 75px;
+        height: $buttonWidth*(0.4);
+        min-height: 75px*(2/5);
+
+        box-shadow: inset;
+    }
+
+    &--sticky{
+        position: sticky;
+        top: 0;
+    }
+}
+

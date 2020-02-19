@@ -1,0 +1,135 @@
+@page {
+    size: 1200px 1500px;
+    margin: 0;
+    padding: 0;
+    display: block;
+} 
+
+html, body{
+    margin: 0;
+    padding: 0;
+    /* display: block; */
+}
+
+.ticket{
+    height: 1500px;
+}
+
+.themeColor{
+    color: #173753;
+}
+
+.blue{background-color: blue;}
+.yellow{background-color: yellow;}
+.purple{background-color: purple;}
+.green{background-color: green;}
+
+.skinny{
+    font-weight: 100;
+}
+
+.aboveTicketDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    margin: 10px 25px 7px 25px;
+    justify-content: space-between;
+    margin-top: 0;
+    padding: 5px;
+}
+
+.orderNr{
+    font-size: 25px;
+}
+
+.ticketDiv {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #555555;
+    padding: 25px 25px 25px 25px;
+    margin: 0 25px 0 25px;
+}
+
+.headerDiv{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+
+.eventName{
+    margin: 0;
+    margin-top: 5px;
+    font-size: 50px;
+}
+
+.organization{
+    margin: 0;
+    font-size: 30px;
+}
+
+.informationGrid{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-gap: 50px 5px;
+    margin: 0;
+    margin-left: 25px;
+}
+
+.informationDiv{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.informationTitle{
+    font-size: 35px;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+
+.informationSub{
+    margin: 0 0 7px 15px;
+    padding: 0;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.informationSubSub{
+    margin: 0 0 0 20px;
+    padding: 0;
+    font-size: 23px;
+}
+
+.line {
+    margin: 50px 0;
+    height: 1px;
+    background:
+        repeating-linear-gradient(to right, black 3px, black 3px, transparent 15px, transparent 15px)
+}
+
+
+.termsDiv{
+    margin: 0 100px 0 100px;
+}
+
+.termsTitle{
+    font-size: 38px;
+    margin-bottom: 45px;
+}
+
+.termsText{
+    margin-left: 10px;
+    line-height: 25px;
+    font-size: 23px;
+}

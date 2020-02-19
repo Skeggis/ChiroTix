@@ -1,0 +1,23 @@
+@import "../../variables";
+
+.LoginForm{
+  
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+
+.blue{ background-color: blue;}
+
+  &__card{
+    margin-top: 50px;
+    width: 50%;
+  }
+
+  &__submitButtonDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+}

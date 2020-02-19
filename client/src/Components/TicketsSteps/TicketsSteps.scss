@@ -1,0 +1,17 @@
+@import "../../variables";
+.TicketsSteps{
+
+    &__steps{
+        margin-bottom: 60px;
+    }
+
+    
+}
+
+.ant-steps-item-icon{
+    background-color: $barBackground !important;
+}
+
+.ant-steps-icon{
+    color: white !important;
+}

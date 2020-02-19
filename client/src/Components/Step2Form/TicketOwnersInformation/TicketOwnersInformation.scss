@@ -1,0 +1,26 @@
+@import "../../../variables";
+.TicketsOwnersInformation {
+    @media(max-width: 900px){
+        margin-top: 20px
+    }
+  &__collapse {
+
+
+    // & .ant-collapse-content {
+    //   // background: $eventBackground;
+    //   background-color: rgba(255, 255, 255, 0.8) !important;
+    //   // background-color: red;
+    //   border-bottom: 1px solid lightgrey !important;
+    // }
+
+    // & .ant-collapse-item {
+    //     border-bottom: 1px solid lightgrey !important;
+
+    //   & .ant-collapse-item-active {
+    //     & .ant-collapse-header {
+    //       border-radius: 4px !important;
+    //     }
+    //   }
+    // }
+  }
+}

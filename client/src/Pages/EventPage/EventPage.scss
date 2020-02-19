@@ -1,0 +1,52 @@
+@import "../../variables";
+.EventPage{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0px;
+
+    &__description{
+        margin-top: 100px;
+    }
+    
+    &__iframe{
+         width:100%;
+         height:100%;
+         border: none;
+    }
+
+
+    &__gmaps{
+        width:100%;
+        height:500px;
+        border:0;
+        padding: 0 15%;
+        
+
+        @media(max-width: 900px){
+            height: 300px;
+            padding: 0;
+        }
+    }
+
+    &__page{
+        padding: 50px 15% 0px 15%;
+        
+        @media(max-width: 900px){
+            padding: 30px 10px 10px;
+
+        }
+
+    }
+
+    &__shareButtons{
+        margin: 25px 0 25px 0;
+    }
+
+
+}
+
+.sticky{
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+}

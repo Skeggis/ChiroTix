@@ -1,0 +1,16 @@
+
+.paymentForm{
+    width: 100%;
+    margin: auto;
+    max-width: 500px;  
+  margin-top: 50px;
+    @media(min-width: 700px){
+      width: 80%
+    }
+
+
+  & .ant-checkbox-inner{
+    height: 20px;
+    width: 20px
+  }
+}

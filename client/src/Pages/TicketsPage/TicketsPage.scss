@@ -1,0 +1,44 @@
+@import "../../variables";
+.TicketsPage{
+  //  background-color: $eventBackground;
+  position: relative;
+
+  @media(max-width: 900px){
+      padding-bottom: 20px
+  }
+    padding-bottom: 150px;
+    height: 100%;
+
+    &__page{
+        margin: 0 5% 30px 5%;
+    }
+
+
+    &__ticketsSteps{
+        // padding-top: 100px;
+        padding: 0 5% 0 5%;
+        margin-bottom: 50px;
+    }
+
+    &__billingInfo{
+        
+    }
+
+
+    &__buttonDiv{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    $buttonHeight:3.5rem;
+    &__button{
+        //margin-right: 7.5%;
+        min-height: 50px;
+        min-width: 125px;
+        height: $buttonHeight;
+        width: $buttonHeight*2.5;
+    }
+
+
+}
