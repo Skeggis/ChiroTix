@@ -41,7 +41,7 @@ if(process.env.PRODUCTION === 'true'){
       next()
     } else {
       console.log("HERE?")
-      res.sendFile(path.resolve(__dirname,'client/build', 'index.html'))
+      res.sendFile(path.resolve(__dirname,'../client/build', 'index.html'))
     }
   })
 }
