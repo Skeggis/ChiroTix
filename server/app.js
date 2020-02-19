@@ -35,7 +35,7 @@ app.use(passport.initialize());
 
 if(process.env.PRODUCTION === 'true'){
   app.disable('x-powered-by')
-  app.use(express.static(path.resolve(__dirname, 'client/build')))
+  app.use(express.static(path.resolve(__dirname, '../client/build')))
   app.get('*', (req,res, next)=>{
     if(req.path.match(/^\/api\//)){
       next()
