@@ -5,12 +5,17 @@ import SearchBar from '../SearchBar/SearchBar'
 export default function Hero(props) {
   const {
     searchValues,
-    setEvents
+    setEvents,
+    loading
   } = props
 
   return (
-    <div className='hero' style={{ backgroundImage: `url('../../../test.jpg')` }}>
-      <SearchBar searchValues={searchValues} setEvents={setEvents}/>
+    <div className='hero' style={{ backgroundImage: `url('../../../lecture.jpg')`, backgroundPosition: 'top center', width: '100%' }}>
+      <SearchBar 
+        searchValues={searchValues} 
+        setEvents={setEvents} 
+        loading={loading}
+      />
     </div>
   )
 }

@@ -19,17 +19,13 @@ function Header(props) {
   if (location === '') {
     return (
       <div className='header--eventPage'>
-        <Link to='/' >
-          <h2 style={{ color: 'white', margin: 0, marginLeft: 20, }}>ChiroTix</h2>
-        </Link>
+         <img  className='header__logo' src={process.env.PUBLIC_URL + '/chirotix.PNG'} onClick={() => history.push('/')} />
       </div>
     )
   } else if (location === 'event') {
     return (
       <div className='header--eventPage'>
-        <Link to='/' >
-          <h2 style={{ color: 'white', margin: 0, marginLeft: 20, }}>ChiroTix</h2>
-        </Link>
+        <img className='header__logo' src={process.env.PUBLIC_URL + '/chirotix.PNG'} onClick={() => history.push('/')} />
         <h2 style={{ color: 'white', margin: 0, marginRight: 20, }}>{organization}</h2>
 
       </div>
@@ -37,9 +33,7 @@ function Header(props) {
   } else if (location === 'tickets') {
     return (
       <div className='header--ticketsPage'>
-        <Link to='/'>
-          <h2 style={{ color: 'white', margin: 0, marginLeft: 20 }}>ChiroTix</h2>
-        </Link>
+        <img className='header__logo' src={process.env.PUBLIC_URL + '/chirotix.PNG'} onClick={() => history.push('/')} />
         {showTimer && (
           <h2 style={{ color: 'white', margin: 0, marginRight: 20, }}>{ticketTime}</h2>
         )}
@@ -49,9 +43,7 @@ function Header(props) {
     console.log('her')
     return (
       <div className='header'>
-        <Link to='/' >
-          <h2 style={{ color: 'white', margin: 0, marginLeft: 20 }}>ChiroTix</h2>
-        </Link>
+        <img className='header__logo' src={process.env.PUBLIC_URL + '/chirotix.PNG'} onClick={() => history.push('/')} />
       </div>
     )
   }

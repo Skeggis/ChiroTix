@@ -71,7 +71,7 @@ function MainInfoBar(props) {
             </div>
 
             <div className=' MainInfoBar__buttonDiv' style={{ justifyContent: 'center', width: '100%', }}>
-                <Button onClick={handleBuyTickets} className="MainInfoBar__button" style={{ backgroundColor: "#6D8791", borderColor: "#6D8791", fontSize: "20px", fontWeight: "400", color: "white", margin: '10px 0' }} >Tickets</Button>
+                <Button onClick={handleBuyTickets} className="MainInfoBar__button"  >Tickets</Button>
             </div>
 
 
@@ -128,7 +128,7 @@ function MainInfoBar(props) {
                 {/* </div> */}
 
 {isSelling && !isSoldOut ? <div className=' MainInfoBar__buttonDiv' style={{ justifyContent: 'flex-end', width: '100%' }}>
-                    <Button onClick={handleBuyTickets} className="MainInfoBar__button" style={{ backgroundColor: "#6D8791", borderColor: "#6D8791", fontSize: "20px", fontWeight: "400", color: "white", marginRight: 150 }} >Tickets</Button>
+                    <Button onClick={handleBuyTickets} className="MainInfoBar__button mainInfoBar--mobile" >Tickets</Button>
                 </div>:<div className=' MainInfoBar__buttonDiv' style={{ justifyContent: 'flex-end', width: '100%' }}></div>}
                 
             </div>

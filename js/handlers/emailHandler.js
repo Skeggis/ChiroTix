@@ -15,8 +15,8 @@ const config = {
 
 async function sendReceiptMail(link, from, to, subject, attachmentBuffer, orderDetails) {
   // create a nodemailer transporter using smtp
+  console.log('about to send mail')
   let transporter = nodemailer.createTransport(config.mailserver);
-
   const mail = {
     from: from,
     to: to,

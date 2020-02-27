@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
 import {
   Icon,
-  Divider
+  Divider,
+  Button
 } from 'antd'
 import './OrderDetails.scss'
 import ShareButtons from '../ShareButtons/ShareButtons'
@@ -115,11 +116,20 @@ export default function OrderDetails(props) {
           <p>{chiroInfo.place}</p>
           <p>{chiroInfo.kennitala}</p>
         </div>
+
       </div>
 
       <div className='orderDetails__infoContainer'>
         <ShareButtons />
+        <div className='orderDetails__downloadButtonContainer'>
+          <Button
+
+          >
+            Tickets
+          </Button>
+        </div>
       </div>
+
     </div>
   )
 }

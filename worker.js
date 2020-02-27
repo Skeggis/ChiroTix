@@ -12,9 +12,6 @@ const REDIS_URL = process.env.REDIS_URL || "redis://127.0.0.1:6379";
 const workers = process.env.WEB_CONCURRENCY || 1;
 const maxJobsPerWorker = 100;
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
 
 function start() {
   console.log('worker start')
@@ -55,10 +52,10 @@ async function saveOrder(eventId, buyerId, tickets, buyerInfo, receipt, insuranc
   let createPDFResponse = await createTicketsPDF({ eventInfo: buyingTicketsResponse.eventInfo, orderDetails:buyingTicketsResponse.orderDetails, chiroInfo: buyingTicketsResponse.chiroInfo })
   let pdfBuffer;//TODO: handle if pdf creation fails.
   if (createPDFResponse.success) { pdfBuffer = createPDFResponse.buffer }
-  console.log('her3')
   const orderId = buyingTicketsResponse.orderDetails.orderId
-  orderDetails.eventName = buyingTicketsResponse.eventInfo.name
-  await sendReceiptMail(
+  buyingTicketsResponse.orderDetails.eventName = buyingTicketsResponse.eventInfo.name
+  console.log('her3')
+  sendReceiptMail(
       `${WEBSITE_URL}/orders/${orderId}`,
       'noreply@chirotix.com',
       buyingTicketsResponse.orderDetails.buyerInfo.email,

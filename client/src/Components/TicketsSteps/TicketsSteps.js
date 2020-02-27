@@ -19,7 +19,6 @@ function TicketsSteps({ current = 0, stepsInfo=[{}]}) {
                     {comp}
                 </Steps>
             </div>
-
         </div>
 
     );

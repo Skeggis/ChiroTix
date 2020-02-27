@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import './EventItem.scss'
 import {
   Divider,
-  Button,
+  Button as AntButton,
   Skeleton
 } from 'antd'
 import { Animated } from "react-animated-css";
 import { withRouter } from 'react-router-dom';
-
+import Button from '../../Button/Button'
 
 function EventItem(props) {
   const {
@@ -25,7 +25,6 @@ function EventItem(props) {
     //isHovering,
     //setIsHovering
   } = props
-
   const [isHovering, setIsHovering] = useState(false)
 
 
@@ -161,9 +160,9 @@ console.log(event.name, event.isSoldOut, event.isSelling)
             <div className='eventItem__buttonsContainer'>
               <Animated style={{ height: '100%' }} isVisible={isHovering || selected} animateOnMount={false} animationOut='fadeOutRight' animationIn='fadeInRight' animationInDuration={300} animationOutDuration={300}>
                 <div className='eventItem__buttonsSecondContainer'>
-                  <Button size='large' style={{ color: 'white', backgroundColor: 'rgba(157, 141, 241, 0.7)', }} onClick={() => handleClickMore()}>More</Button>
+                  <Button size='large' onClick={() => handleClickMore()}>More</Button>
                   
-                  {event.isSelling && !event.isSoldOut ? <Button size='large' style={{ color: 'white', backgroundColor: 'rgba(157, 141, 241, 0.7)', marginLeft: 30}} onClick={(event) => handleClickTickets(event)}>Tickets</Button>:""}
+                  {event.isSelling && !event.isSoldOut ?<div style={{marginLeft: 15}}> <Button size='large' onClick={(event) => handleClickTickets(event)}>Tickets</Button> </div>:""}
                 </div>
               </Animated>
             </div>

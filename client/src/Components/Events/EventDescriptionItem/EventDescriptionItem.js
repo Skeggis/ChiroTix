@@ -1,12 +1,10 @@
 import React from 'react'
 import './EventDescriptionItem.scss'
 
-import {
-  Button
-} from 'antd'
+
 import { Animated } from 'react-animated-css'
 import { withRouter } from 'react-router-dom'
-
+import Button from '../../Button/Button'
 
 function EventDescriptionItem(props) {
   const {
@@ -79,7 +77,9 @@ function EventDescriptionItem(props) {
 
           <Animated isVisible={animate} animateOnMount={true} animationIn={descriptionAnimationIn} animationOut={descriptionAnimationOut} animationDuration={300} animationInDelay={220}>
             <div className='eventDescItem__actionsWrapper'>
-              <Button size='large' style={{ marginRight: 10 }} onClick={() => props.history.push(`/event/${event.id}`)}>More</Button>
+              <div style={{marginRight: 10}}>
+              <Button size='large' onClick={() => props.history.push(`/event/${event.id}`)}>More</Button>
+              </div>
               <Button size='large' onClick={() => props.history.push(`/tickets/${event.id}`)}>Tickets</Button>
             </div>
           </Animated>

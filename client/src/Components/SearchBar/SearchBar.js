@@ -4,17 +4,18 @@ import {
   Input,
   Select,
   Divider,
-  Button,
   DatePicker,
   Row,
   Col,
-  Slider
+  Slider,
+  Button as AntButton
 } from 'antd'
 import 'antd/dist/antd.css';
 import './SearchBar.scss'
 import axios from 'axios'
 
 import { Collapse } from 'react-collapse'
+import Button from '../Button/Button'
 
 const { Option } = Select
 const { RangePicker } = DatePicker
@@ -22,7 +23,8 @@ const { RangePicker } = DatePicker
 export default function SearchBar(props) {
   const {
     searchValues,
-    setEvents
+    setEvents,
+    loading
   } = props
 
 
@@ -79,8 +81,10 @@ export default function SearchBar(props) {
 
 
   useEffect(() => {
-    setAvailableCities(searchValues.cities)
-  }, [])
+    if (!loading) {
+      setAvailableCities(searchValues.cities)
+    }
+  }, [loading])
 
   function handleSeeMore() {
     setSeeMore(prev => !prev)
@@ -163,164 +167,191 @@ export default function SearchBar(props) {
   function priceDisplayFormatter(value) {
     return `${value} $`
   }
-  return (
-    <Fragment>
-      <form className='searchBar' onSubmit={handleSearch} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <div className={`searchBar__card ${(seeMore || hovering) ? 'searchBar__card--hovering' : ''}`} >
-          <div className={`searchBar__card__input ${(seeMore || hovering)?'searchBar__card__input--hovering':''}`}>
+
+  if (loading) {
+    return (
+      <div className='searchBar'>
+        <div className='searchBar__card'>
+          <div className='searchBar__card__input'>
             <Input.Search
               value={searchString}
               onChange={(event) => setSearchString(event.target.value)}
               size='large'
-              enterButton={<Button loading={searchLoading} icon='search' style={{ width: 50, color: `${(hovering || seeMore) ? 'black' : 'white'}` }}></Button>}
-              onSearch={handleSearch}
-
+              enterButton={<AntButton loading={loading} icon='search' style={{ width: 50, color:'white' }}></AntButton>}
+              onSearch={() => {}}
             />
           </div>
-          <Collapse isOpened={seeMore || hovering}>
-            <div className='searchBar__card__mainFilters'>
-              <Row gutter={[16, 16]} style={{ marginTop: 0 }}>
-                <Col sm={12} md={5}>
-                  <div className='searchBar__card__mainFilters__filter'>
-                    <Select
-                      style={{ width: '100%' }}
-                      placeholder='Category'
-                      showSearch
-                      mode='multiple'
-                      labelInValue
-                      value={selectedCategories}
-                      onChange={handleCatChange}
-                    >
-                      {searchValues.categories.map(cat => (
-                        <Option key={cat.id} value={`${cat.id}`}>{cat.name}</Option>
-                      ))}
-                    </Select>
-                  </div>
-                </Col>
-                <Col sm={12} md={5}>
-                  <div className='searchBar__card__mainFilters__filter'>
-                    <Select
-                      style={{ width: '100%' }}
-                      placeholder='Country'
-                      mode='multiple'
-                      value={selectedCountries}
-                      onChange={handleCountryChange}
-                      labelInValue
-                    >
-                      {searchValues.countries.map(country => (
-                        <Option value={`${country.id}`}>{country.name}</Option>
-                      ))}
-                    </Select>
-                  </div>
-                </Col>
-                <Col sm={12} md={5}>
-                  <div className='searchBar__card__mainFilters__filter'>
-                    <Select
-                      style={{ width: '100%' }}
-                      placeholder='City'
-                      mode='multiple'
-                      labelInValue
-                      value={selectedCities}
-                      onChange={handleCityChange}
-                    >
-                      {availableCities.map(city => (
-                        <Option value={`${city.id}`}>{city.name}</Option>
-                      ))}
-                    </Select>
-                  </div>
-                </Col>
-                <Col sm={12} md={9}>
-                  <div className='searchBar__card__mainFilters__filter'>
-                    <RangePicker
-                      style={{ width: '100%' }}
-                      onChange={handleDateChange} />
-                  </div>
-                </Col>
-              </Row>
+        </div>
+      </div>
+    )
+  } else {
+    return (
+      <Fragment>
+        <div className='searchBar' onSubmit={handleSearch} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <div className={`searchBar__card ${(seeMore || hovering) ? 'searchBar__card--hovering' : ''}`} >
+            <div className={`searchBar__card__input ${(seeMore || hovering) ? 'searchBar__card__input--hovering' : ''}`}>
+              <Input.Search
+                value={searchString}
+                onChange={(event) => setSearchString(event.target.value)}
+                size='large'
+                enterButton={<AntButton loading={searchLoading} icon='search' style={{ width: 50, color: `${(hovering || seeMore) ? 'white' : 'white'}` }}></AntButton>}
+                onSearch={handleSearch}
+
+              />
             </div>
-            <Divider style={{ marginTop: 20, marginBottom: 0 }}>
-              <Button type='link' onClick={handleSeeMore} >{!seeMore ? ('See more') : ('See less')}</Button>
-            </Divider>
-            <Collapse isOpened={seeMore}>
-              <div style={{ paddingTop: 20, paddingBottom: 10 }}>
-                <Row gutter={16} style={{ marginTop: 0 }}>
-                  <Col span={8}>
-                    <Select
-                      style={{ width: '100%' }}
-                      placeholder='Organization'
-                      mode='multiple'
-                      labelInValue
-                      value={selectedOrganizations}
-                      onChange={handleOrganizationsChange}
-                    >
-                      {searchValues.organizations.map(org => (
-                        <Option value={`${org.id}`}>{org.name}</Option>
-                      ))}
-                    </Select>
+            <Collapse isOpened={(seeMore || hovering) && (!loading)}>
+              <div className='searchBar__card__mainFilters'>
+                <Row gutter={[16, 16]} style={{ marginTop: 0 }}>
+                  <Col sm={12} md={5}>
+                    <div className='searchBar__card__mainFilters__filter'>
+                      <Select
+                        style={{ width: '100%' }}
+                        placeholder='Category'
+                        showSearch
+                        mode='multiple'
+                        labelInValue
+                        value={selectedCategories}
+                        onChange={handleCatChange}
+                        size='large'
+                      >
+                        {searchValues.categories.map(cat => (
+                          <Option key={cat.id} value={`${cat.id}`}>{cat.name}</Option>
+                        ))}
+                      </Select>
+                    </div>
                   </Col>
-                  <Col span={8} >
-                    <Select
-                      style={{ width: '100%' }}
-                      placeholder='Tags'
-                      mode='multiple'
-                      labelInValue
-                      value={selectedTags}
-                      onChange={handleTagsChange}
-                    >
-                      {searchValues.tags.map(tag => (
-                        <Option key={tag.id} value={`${tag.id}`}>{tag.name}</Option>
-                      ))}
-                    </Select>
+                  <Col sm={12} md={5}>
+                    <div className='searchBar__card__mainFilters__filter'>
+                      <Select
+                        style={{ width: '100%' }}
+                        placeholder='Country'
+                        mode='multiple'
+                        value={selectedCountries}
+                        onChange={handleCountryChange}
+                        labelInValue
+                        size='large'
+                      >
+                        {searchValues.countries.map(country => (
+                          <Option value={`${country.id}`}>{country.name}</Option>
+                        ))}
+                      </Select>
+                    </div>
                   </Col>
-                  <Col span={8}>
-                    <Select
-                      style={{ width: '100%' }}
-                      placeholder='Speakers'
-                      mode='multiple'
-                      labelInValue
-                      value={selectedSpeakers}
-                      onChange={handleSpeakersChange}
-                    >
-                      {searchValues.speakers.map(speaker => (
-                        <Option key={speaker.id} value={`${speaker.id}`}>{speaker.name}</Option>
-                      ))}
-                    </Select>
+                  <Col sm={12} md={5}>
+                    <div className='searchBar__card__mainFilters__filter'>
+                      <Select
+                        style={{ width: '100%' }}
+                        placeholder='City'
+                        mode='multiple'
+                        labelInValue
+                        value={selectedCities}
+                        onChange={handleCityChange}
+                        size='large'
+
+                      >
+                        {availableCities.map(city => (
+                          <Option value={`${city.id}`}>{city.name}</Option>
+                        ))}
+                      </Select>
+                    </div>
                   </Col>
-                </Row>
-                <Row gutter={24} style={{ marginTop: 20 }}>
-                  <Col span={12}>
-                    <h4 style={{ marginBottom: 0 }}>Price:</h4>
-                    <Slider
-                      range
-                      defaultValue={[0, 400]}
-                      max={3000}
-                      tipFormatter={priceDisplayFormatter}
-                      onChange={handlePriceChange}
-                    />
-                  </Col>
-                  <Col span={12}>
-                    <h4 style={{ marginBottom: 0 }}>CE Credits:</h4>
-                    <Slider
-                      range
-                      defaultValue={[0, 3]}
-                      max={10}
-                      onChange={handleCeCreditsChange}
-                    />
+                  <Col sm={12} md={9}>
+                    <div className='searchBar__card__mainFilters__filter'>
+                      <RangePicker
+                        style={{ width: '100%' }}
+                        onChange={handleDateChange}
+                        size='large'
+                      />
+                    </div>
                   </Col>
                 </Row>
               </div>
+              <Divider style={{ marginTop: 20, marginBottom: 0 }}>
+                <Button type='link' onClick={handleSeeMore} >{!seeMore ? ('See more') : ('See less')}</Button>
+              </Divider>
+              <Collapse isOpened={seeMore}>
+                <div style={{ paddingTop: 20, paddingBottom: 10 }}>
+                  <Row gutter={16} style={{ marginTop: 0 }}>
+                    <Col span={8}>
+                      <Select
+                        style={{ width: '100%' }}
+                        placeholder='Organization'
+                        mode='multiple'
+                        labelInValue
+                        value={selectedOrganizations}
+                        onChange={handleOrganizationsChange}
+                        size='large'
+                      >
+                        {searchValues.organizations.map(org => (
+                          <Option value={`${org.id}`}>{org.name}</Option>
+                        ))}
+                      </Select>
+                    </Col>
+                    <Col span={8} >
+                      <Select
+                        style={{ width: '100%' }}
+                        placeholder='Tags'
+                        mode='multiple'
+                        labelInValue
+                        value={selectedTags}
+                        onChange={handleTagsChange}
+                        size='large'
+                      >
+                        {searchValues.tags.map(tag => (
+                          <Option key={tag.id} value={`${tag.id}`}>{tag.name}</Option>
+                        ))}
+                      </Select>
+                    </Col>
+                    <Col span={8}>
+                      <Select
+                        style={{ width: '100%' }}
+                        placeholder='Speakers'
+                        mode='multiple'
+                        labelInValue
+                        value={selectedSpeakers}
+                        onChange={handleSpeakersChange}
+                        size='large'
+                      >
+                        {searchValues.speakers.map(speaker => (
+                          <Option key={speaker.id} value={`${speaker.id}`}>{speaker.name}</Option>
+                        ))}
+                      </Select>
+                    </Col>
+                  </Row>
+                  <Row gutter={24} style={{ marginTop: 20 }}>
+                    <Col span={12}>
+                      <h4 style={{ marginBottom: 0, color: 'white' }}>Price:</h4>
+                      <Slider
+                        range
+                        defaultValue={[0, 400]}
+                        max={3000}
+                        tipFormatter={priceDisplayFormatter}
+                        onChange={handlePriceChange}
+                      />
+                    </Col>
+                    <Col span={12}>
+                      <h4 style={{ marginBottom: 0, color: 'white' }}>CE Credits:</h4>
+                      <Slider
+                        range
+                        defaultValue={[0, 3]}
+                        max={10}
+                        onChange={handleCeCreditsChange}
+                      />
+                    </Col>
+                  </Row>
+                </div>
+              </Collapse>
+              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button loading={searchLoading} onClick={handleSearch} type='outlined'>Search</Button>
+
+              </div>
             </Collapse>
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <Button loading={searchLoading} onClick={handleSearch}>Search</Button>
 
-            </div>
-          </Collapse>
-
+          </div>
         </div>
-      </form>
 
 
-    </Fragment>
-  )
+      </Fragment>
+    )
+  }
 }
-
