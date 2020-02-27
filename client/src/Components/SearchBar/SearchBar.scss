@@ -1,40 +1,36 @@
+@import "../../variables";
 .searchBar {
-
-  & .ant-card-body{
-    padding-bottom: 10px
+  & .ant-card-body {
+    //padding-bottom: 10px;
   }
+  position: relative;
+
   width: 100%;
   max-width: 700px;
   margin: 0px auto;
-  @media(min-width: 700px){
+  margin-bottom: 10px;
+  @media (max-width: 700px) {
     width: 90%;
-    margin: 30px auto 10px;
   }
 
-  
-  
   &__card {
     border-radius: 5px;
     padding: 30px;
-    transition: background-color .4s ease;
-
-    &--hovering{
-      background-color: white;
-    }
+    transition: background-color 0.4s ease;
 
     &__input {
       width: 100%;
       margin-bottom: 20px;
 
-      & .ant-btn{
+      & .ant-btn {
         border-radius: 0 20px 20px 0;
       }
 
-      & .ant-input-group-addon{
+      & .ant-input-group-addon {
         background: none;
-        
-        & button{
-          background: none
+
+        & button {
+          background: none;
         }
       }
     }
@@ -43,36 +39,138 @@
       border-radius: 20px;
       padding: 0 15px;
       background: none;
-      color: white
+      color: white;
     }
 
-    &__input--hovering .ant-input{
+    &__input .ant-input:hover {
+      border-color: $secondaryColor;
+    }
+
+    &__input--hovering .ant-input {
       border-radius: 20px;
       padding: 0 15px;
       background: none;
-      color: black
+      color: black;
     }
 
     &__mainFilters {
- 
-
       &__filter {
         width: 100%;
       }
     }
 
-    &__divider{
+    &__divider {
       margin-top: 10px;
       margin-bottom: 0px;
     }
   }
+
+  &__card:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  &__card--hovering {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  & .ant-input {
+    background-color: transparent;
+    color: white;
+  }
+
+  & .ant-select {
+    color: white;
+  }
+
+  & .ant-select:focus{
+    border-color: $secondaryColor;
+  }
+
+  & .ant-select-open {
+    border-color: $secondaryColor;
+  }
+
+  & .ant-select-selection {
+    background-color: transparent;
+  }
+
+  & .ant-input:hover {
+    border-color: $secondaryColor;
+  }
+
+  & .ant-input:focus {
+    border-color: $secondaryColor;
+  }
+
+  & .ant-select-selection:hover {
+    border-color: $secondaryColor;
+  }
+
+  & .ant-calendar-range-picker-input::placeholder {
+    color: white;
+  }
+
+  & .ant-calendar-range-picker-separator {
+    color: lightgrey;
+  }
+
+  & .ant-calendar-picker {
+    border-color: $secondaryColor;
+  }
+
+  & .ant-calendar-range-picker-input:focus {
+    border-color: $secondaryColor;
+  }
+
+  & .ant-calendar-picker:hover {
+    .ant-calendar-picker-input {
+      border-color: $secondaryColor;
+    }
+  }
+
+  & .ant-slider-track {
+    background-color: $secondaryColor;
+  }
+
+  & .ant-slider:hover {
+    .ant-slider-track {
+      background-color: $secondaryColor;
+    }
+
+    .ant-slider-handle {
+      border-color: $secondaryColor;
+    }
+  }
+
+  & .ant-slider-handle {
+    border-color: $secondaryColor;
+  }
+
+  & .ant-calendar-picker-input:hover {
+    border-color: $secondaryColor;
+  }
+
+  & .ant-select-selection__placeholder {
+    //text-shadow: 1px 1px 2px black;
+    color: white;
+  }
+
+  &__searchButton{
+    & .ant-btn:hover{
+      border-color: $secondaryColor;
+    }
+  }
+
+  & .ant-input-group-addon:hover{
+    .ant-input-search-button{
+      border-color: $secondaryColor;
+    }
+  }
 }
 
-
-.searchBar .ant-card{
+.searchBar .ant-card {
   cursor: default;
 }
-
 
 .searchBar .ReactCollapse--collapse {
   transition: height 300ms;

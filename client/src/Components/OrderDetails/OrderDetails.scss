@@ -1,7 +1,10 @@
+@import '../../variables';
+
 .orderDetails{
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 30px;
   
   &__container{
     position: relative;
@@ -54,11 +57,26 @@
   &__infoContainer{
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    margin-top: 20px;
   }
 
   &__shareButtonsContainer{
     display: flex;
     justify-content: space-around;
+  }
+
+  &__downloadButtonContainer{
+    margin-left: 10px;
+
+    & .ant-btn{
+      height: 50px;
+      border-color: $secondaryColor;
+      background-color: $secondaryColor;
+      color: white;
+
+      &:hover{
+        box-shadow: 0 0 10px rgba(33,33,33,0.3);
+      }
+    }
   }
 }

@@ -8,13 +8,13 @@
   display: flex;
   position: 'absolute';
 
-  // @media(min-width: 1200px){
-  //   min-height: 550px;
-  // }
+  @media(min-width: 1200px){
+    height: 550px;
+  }
 
-  // @media(min-width: 1600px){
-  //   min-height: 650px;
-  // }
+  @media(min-width: 1600px){
+    height: 650px;
+  }
 
   &__imageWrapper{
     position: relative;

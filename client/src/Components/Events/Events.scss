@@ -22,6 +22,19 @@
     transition: height 0.8s ease
   }
 
+  &__descriptionWrapper{
+    height: 450px;
+    position: relative;
+
+    @media(min-width: 1200px){
+      height: 550px
+    }
+    
+    @media(min-width: 1600px){
+      height: 650px
+    }
+  }
+
   
 }
 

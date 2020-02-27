@@ -34,5 +34,13 @@
     box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
     background: $barBackground;
   }
+
+  &__logo{
+    height: 70%;
+  }
+
+  &__logo:hover{
+    cursor: pointer;
+  }
 }
 

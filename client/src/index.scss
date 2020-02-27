@@ -5,4 +5,14 @@ html, body{
     height: 100%;
    // background-color: $eventBackground;
   // overflow-x: hidden;
+
+
+}
+
+:global(.ant-btn) {
+  background-color: red;
+  &:hover {
+    background-color: var(--secondary-hover-color) !important;
+    border-color: var(--secondary-hover-color) !important;
+  }
 }

@@ -54,15 +54,18 @@ export default function HomePage(props) {
   if (loading) {
     return (
       <Fragment>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ margin: '50px 0 30px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+          {/* <div style={{ margin: '50px 0 30px' }}>
 
             <Row justify='center' type='flex'>
               <Col xs={24} sm={18} md={12}>
                 <Skeleton active />
               </Col>
             </Row>
-          </div>
+          </div> */}
+          <Hero
+            loading={true}
+          />
 
             <Row gutter={[24, 32]} style={{width: '100%'}}>
               {[...Array(6)].map((e, i) => (

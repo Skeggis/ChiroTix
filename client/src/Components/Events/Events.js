@@ -103,12 +103,12 @@ export default function Events(props) {
                 )}
               </Fragment>
             ))}
-            {!mobile && (
-              <Col span={24}>
+            {(!mobile) && (
+              <Col span={24} >
 
                 {/* <div style={{ height: eventIsOpen && selectedEvent.eventRowNumber === i ? 450 : 0, position: 'relative' }} className='events__descriptionItem'> */}
                 <Collapse isOpened={selectedEvent.eventRowNumber === i}>
-                  <div style={{ position: 'relative', height: 450 }}>
+                  <div className='events__descriptionWrapper'>
                     {row.map((event, j) => (
                       <div style={{ height: '100%', width: '100%', position: selectedEvent.id === event.id && eventIsOpen ? 'absolute' : 'absolute', display: selectedEvent.id === event.id && eventIsOpen ? '' : '', top: 0, left: 0, overflow: 'hidden', zIndex: selectedEvent.id === event.id && eventIsOpen ? 10 : 0 }}>
 

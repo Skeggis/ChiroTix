@@ -79,8 +79,24 @@
         min-width: 75px;
         height: $buttonWidth*(0.4);
         min-height: 75px*(2/5);
-
         box-shadow: inset;
+        background-color: $secondaryColor;
+        border-color: $secondaryColor;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        margin-right: 150px;
+        transition: box-shadow 0.3s ease;
+
+        &:hover{
+            background-color: $secondaryColor;
+            color: white;
+            box-shadow: 0 0 5px rgba(33, 33, 33, 0.3);
+        }
+
+        &--mobile{
+            margin: 10px 0;
+        }
     }
 
     &--sticky{

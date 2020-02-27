@@ -1,8 +1,9 @@
 .hero{
-  min-height: 50vh;
+  min-height:50vh;
   background-size: cover;
   margin: auto;
   display: flex;
   align-items: center;
-
+  padding-top:80px;
+  border-radius: 0 0 20px 20px;
 }
