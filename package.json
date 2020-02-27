@@ -13,7 +13,7 @@
     "testing": "mocha -R spec --bail --exit=true ./test/setup/setup.test.js ./test/events/createEvent.test.js",
     "searchTest": "mocha -R spec --bail --exit=true ./test/setup/setup.test.js ./test/search/searchEvent.test.js",
     "emailTest": "node ./js/handlers/emailHandler.js",
-    "heroku-postbuild": "cd client && npm install --only=dev  && npm run build"
+    "heroku-postbuild": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
