@@ -361,7 +361,7 @@ function TicketsPage(props) {
         })
     }
 
-    setShowTimer(!!releaseTime && current !== 3)
+    setShowTimer(!!releaseTime && current !== 3 && current !== 0)
 
 
 
