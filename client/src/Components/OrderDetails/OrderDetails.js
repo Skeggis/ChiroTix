@@ -120,15 +120,14 @@ export default function OrderDetails(props) {
 
       <div className='orderDetails__infoContainer'>
         <ShareButtons />
-        <div className='orderDetails__downloadButtonContainer'>
-          <Button
 
+      </div>
+      <div className='orderDetails__downloadButtonContainer'>
+          <Button
           >
-            Tickets
+            Download Tickets
           </Button>
         </div>
-      </div>
-
     </div>
   )
 }

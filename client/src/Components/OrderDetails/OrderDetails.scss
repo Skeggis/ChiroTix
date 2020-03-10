@@ -67,6 +67,9 @@
 
   &__downloadButtonContainer{
     margin-left: 10px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
 
     & .ant-btn{
       height: 50px;
