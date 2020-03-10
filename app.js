@@ -4,6 +4,10 @@ const passport = require('passport');
 const path = require('path')
 var cors = require('cors')
 
+const Sentry = require('@sentry/node');
+Sentry.init({ dsn: process.env.SENTRY_DSN });
+
+
 const {connectSocket} = require('./js/socket')
 const {
   errorHandler,
@@ -26,6 +30,7 @@ const adminRouter = require('./js/routers/adminRouter')
 
 
 const app = express();
+app.use(Sentry.Handlers.requestHandler()); //Sentry must be first middleware
 app.use(cors({
   origin: '*' //Change before prod!
 })) //Just for development! //Set options to only allow our frontend
@@ -56,6 +61,7 @@ app.use('/api',orderRouter)
 app.use('/api',userRouter)
 app.use('/api',adminRouter)
 
+app.use(Sentry.Handlers.errorHandler());
 app.use(notFoundHandler)
 app.use(errorHandler)
 
