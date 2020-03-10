@@ -4,7 +4,7 @@ const formatter = require('../formatter')
 const { SYSTEM_ERROR } = require('../Messages')
 const { DB_CONSTANTS } = require('../helpers')
 
-async function getOrderDb(orderId){
+async function getOrderDb(orderId, withReceipt = true){
 
 let message = {
   success: false
@@ -22,9 +22,12 @@ let message = {
     message.order = result.rows[0]
     
 
+    if(withReceipt){
+      const chiroInfo = await client.query(`select receiptinfo from ${DB_CONSTANTS.CHIRO_TIX_SETTINGS_DB}`)
+      message.chiroInfo = chiroInfo.rows[0].receiptinfo
+    }
    
-    const chiroInfo = await client.query(`select receiptinfo from ${DB_CONSTANTS.CHIRO_TIX_SETTINGS_DB}`)
-    message.chiroInfo = chiroInfo.rows[0].receiptinfo
+    
 
     await client.query('COMMIT')
     message.success = true

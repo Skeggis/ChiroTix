@@ -324,10 +324,18 @@ async function changeEventState(eventId, isSelling, isSoldOut, isVisible){
   }
 }
 
+async function eventInfoView(eventId){
+  let result = await query(`Select * from ${DB_CONSTANTS.EVENTS_INFO_VIEW} where eventid=${eventId}`)
+  if(!result.rows[0]){return null}
+  const { eventInfo } = await formatter.formatEventInfoView(result.rows)
+  return eventInfo
+}
+
 
 module.exports = {
   insertEventDb,
   getEventByIdDb,
   getInsertValuesDb,
-  changeEventState
+  changeEventState,
+  eventInfoView
 }

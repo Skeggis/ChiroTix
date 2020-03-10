@@ -85,6 +85,7 @@ async function buyTickets(eventId, buyerId, tickets, buyerInfo, receipt, insuran
         const newOrdrerNr = lastOrderNr.rows[0].ordernr + 1
         console.log('receipt: ', receipt)
         console.log('stringified receipt: ', JSON.stringify(receipt))
+        console.log("InsurancePrice", insurancePrice,parseFloat(insurancePrice))
         //Insert into the orders table
         const ordersQuery = `insert into ${DB_CONSTANTS.ORDERS_DB} (orderid, eventid, receipt, tickets, insurance, buyerinfo, buyerid, ordernr, insuranceprice)
                 values ($1, $2, $3, $4, $5, $6, $7, $8, $9) returning *`

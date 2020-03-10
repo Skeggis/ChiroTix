@@ -16,9 +16,10 @@ async function connectSocket(server, app) {
 
         socket.on('timer', async () => {
             clearTimeout(socket.timeOut)
-
+console.log("SocketTimer:", socket.timer)
             //Will this work or will heroku throw it out on reconnect?
             socket.timeOut = setTimeout(async () => {
+                console.log("SETTING TIMEOUT IMMEDIATELY")
                 let response = await ticketHandler.releaseAllTicketsForBuyer({ buyerId: socket.buyerId, eventId: socket.eventId })
                 if(response.success){socket.emit('timerDone')}
             }, socket.timer)

@@ -324,7 +324,8 @@ async function formatSchedule(schedule){
       return {
           id: settings.id,
           ticketsTermsTitle: settings.ticketstermstitle,
-          ticketsTermsText: settings.ticketstermstext
+          ticketsTermsText: settings.ticketstermstext,
+          receiptInfo: settings.receiptinfo
       }
   }
 

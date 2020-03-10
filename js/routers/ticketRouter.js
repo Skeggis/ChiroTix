@@ -17,6 +17,15 @@ async function eventInfo(req, res) {
     res.json(responseData)
 }
 
+async function downloadMyTickets(req, res){
+    let orderId = req.params.orderId
+    if (!orderId) {return res.json(BAD_REQUEST("Invalid body request."))}
+    let responseData = await ticketHandler.downloadMyTickets(orderId)
+    if(!responseData.success || !responseData.ticketsPdfBuffer){return res.json(responseData)}
+    res.contentType("application/pdf");
+    res.send(responseData.ticketsPdfBuffer);
+}
+
 /**
  * 
  * @param {JSON} req.body:{
@@ -45,16 +54,14 @@ async function reserveTickets(req, res) {
         eventId,
         ticketTypes
     }
-
     var response = await ticketHandler.reserveTickets(data)
     if (!response.success) { return res.json(response) }
-
     let io = req.app.get('io')
     let timer = await calculateTime(response.reservedTickets)
     let now = new Date()
     let releaseDate = new Date(now.getTime() + (timer))
 
-    if(io && io.sockets.connected[socketId] && !process.env.TEST){
+    if(io && io.sockets.connected[socketId] && process.env.TEST === 'false'){
         io.sockets.connected[socketId].releaseTime = releaseDate
         io.sockets.connected[socketId].timer = timer
     }
@@ -187,6 +194,7 @@ async function releaseTickets(req, res) {
 }
 
 router.get('/tickets/info/:eventId', catchErrors(eventInfo))
+router.get('/tickets/downloadMyTickets/:orderId', catchErrors(downloadMyTickets))
 router.post('/tickets/reserveTickets', catchErrors(reserveTickets))
 router.post('/tickets/buyTickets', catchErrors(buyTickets))
 router.post('/tickets/releaseTickets', catchErrors(releaseTickets))

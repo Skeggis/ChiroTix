@@ -2,6 +2,8 @@ require('dotenv').config()
 const { HOST } = require('../helpers')
 const ticketDb = require('../database/ticketDb')
 const settingsDb = require('../database/settingsDb')
+const orderDb = require('../database/orderDb')
+const eventDb = require('../database/eventDb')
 const { SYSTEM_ERROR, BAD_REQUEST } = require('../Messages')
 const {
     sendReceiptMail
@@ -10,8 +12,21 @@ const { createTicketsPDF } = require('../createPDFHTML/createPDF')
 const crypto = require('crypto')
 const checkoutNodeJssdk = require('@paypal/checkout-server-sdk');
 const paypalClient = require('../paypalEnvironment')
+const formatter = require('../formatter')
 
+async function downloadMyTickets(orderId){
+    let orderResponse = await orderDb.getOrderDb(orderId, false)
+    if(!orderResponse.success) { return SYSTEM_ERROR()}
 
+    let orderDetails = await formatter.formatOrderDetails(orderResponse.order)
+    let eventInfo = await eventDb.eventInfoView(orderDetails.eventId)
+    if(!eventInfo){return SYSTEM_ERROR()}
+
+    let settings = await settingsDb.getSettings()
+    console.log(settings)
+    let {success, buffer} = await createTicketsPDF({orderDetails, eventInfo, chiroInfo: settings})
+    return {success, ticketsPdfBuffer: buffer}
+}
 
 
 async function getEventInfoWithTicketTypes(eventId) { return await ticketDb.getEventInfoWithTicketTypes(eventId) }
@@ -308,4 +323,4 @@ async function ticketsReservedMatchBuyerTickets(reservedTickets, tickets) {
 
 
 
-module.exports = { reserveTickets, buyTickets, releaseAllTicketsForBuyer, getEventInfoWithTicketTypes }
+module.exports = { reserveTickets, buyTickets, releaseAllTicketsForBuyer, getEventInfoWithTicketTypes, downloadMyTickets }

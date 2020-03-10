@@ -18,6 +18,7 @@ function start() {
   let workQueue = new Queue('work', REDIS_URL)
 console.log("THERE")
   workQueue.process(maxJobsPerWorker, async (job) => {
+    console.log("process Start")
     const data = job.data
       //job.progress(progress)
     const paymentResult = await handlePayment(data.paymentOptions, data.insurance, data.tickets)
