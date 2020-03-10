@@ -113,7 +113,7 @@ function createReceiptEmail(link, orderNr, eventName, ownerName, amountOfTickets
                   <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                     <tr>
                       <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                        <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:42px;font-weight:300;line-height:1;text-align:center;color:white;">ChiroTix</div>
+                        <img src="cid:chiroTix@kreata.ee"/>
                       </td>
                     </tr>
                   </table>

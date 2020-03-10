@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment, useRef } from 'react'
 import { URL } from '../../Constants'
 import axios from 'axios'
 import { useMedia } from 'react-use'
-
+import mapboxgl from 'mapbox-gl'
 
 import BigAd from '../../Components/BigAd/BigAd'
 import MainInfoBar from '../../Components/MainInfoBar/MainInfoBar'
@@ -15,6 +15,8 @@ import {
 
 import './EventPage.scss'
 
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN
+
 function EventPage(props) {
 
     const {
@@ -25,26 +27,57 @@ function EventPage(props) {
     const [loading, setLoading] = useState(true)
     const [mainInfoBarHeight, setMainInfoBarHeight] = useState(0)
     const [scrollHeight, setScrollHeight] = useState(0)
+    const [mapState, setMapState] = useState({})
+    const mapRef = React.useRef();
+
 
     const [url, setUrl] = useState(URL)
     useEffect(() => {
-        window.scrollTo(0,0)
+        window.scrollTo(0, 0)
         let fetchEvent = async () => {
             let eventId = props.match.params.eventId
             setUrl(URL + `/event/${eventId}`)
             let result = await axios.get(process.env.REACT_APP_SERVER_URL + `/api/event/${eventId}`)
             console.log("HERE!:", result.data)
-            if(!result.data.success){ return props.history.push('/notFound') }
+            if (!result.data.success) { return props.history.push('/notFound') }
             setEvent(result.data.eventInfo)
             setOrganization(result.data.eventInfo.organization)
-            window.scrollTo(0,0)
+            window.scrollTo(0, 0)
             setLoading(false)
+            initializeMap(result.data.eventInfo)
         }
         fetchEvent()
+
+
+
 
         window.addEventListener('scroll', () => setScrollHeight(window.scrollY));
         return () => window.removeEventListener('scroll', () => setScrollHeight(window.scrollY));
     }, [])
+
+    function initializeMap(info) {
+        const lat = parseFloat(info.latitude)
+        const lng = parseFloat(info.longitude)
+        setMapState({
+            lng,
+            lat,
+            zoom: 2
+        })
+
+        const map = new mapboxgl.Map({
+            container: mapRef.current,
+            style: 'mapbox://styles/huldarsson/ck7l4phna02r61ijy1aa5ryke',
+            center: [lat, lng],
+            zoom: 13,
+        });
+
+        var el = document.createElement('div');
+        el.className = 'EventPage__marker';
+        // el.style.backgroundImage = "/marker.png"
+        const marker = new mapboxgl.Marker(el)
+            .setLngLat([lat,lng])
+            .addTo(map);
+    }
 
     function showErrors(messages, title) {
         if (!messages || messages.length === 0) { return }
@@ -128,18 +161,16 @@ function EventPage(props) {
                     )}
 
 
-   
+
                 </div>
-            {loading ? (
-                <div >
-                            <Skeleton active />
-                        </div>
-                    ) : (
-                        <div className="EventPage__gmaps">
-                                <iframe title="massi" className="EventPage__iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1789.6759986433394!2d-21.90691108388139!3d64.11145742580317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48d60caaf8eb043d%3A0xf3846a65cb2f18b0!2sFannborg%202%2C%20K%C3%B3pavogur!5e1!3m2!1sen!2sis!4v1576517501262!5m2!1sen!2sis" ></iframe>
-                            </div>
-                        )}
-                        </div>
+
+                <div className="EventPage__gmaps">
+                    <div>
+                        <div ref={mapRef} className='EventPage__mapBoxContainer' />
+                    </div>
+
+                </div>
+            </div>
         </Fragment>
     );
 }

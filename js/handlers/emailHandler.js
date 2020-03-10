@@ -17,6 +17,8 @@ async function sendReceiptMail(link, from, to, subject, attachmentBuffer, orderD
   // create a nodemailer transporter using smtp
   console.log('about to send mail')
   let transporter = nodemailer.createTransport(config.mailserver);
+  console.log('printing orderdetails')
+  console.log(orderDetails)
   const mail = {
     from: from,
     to: to,
@@ -25,7 +27,12 @@ async function sendReceiptMail(link, from, to, subject, attachmentBuffer, orderD
     attachments:[{
       filename:"tickets.pdf",
       content: attachmentBuffer
-    }]
+    },{
+      filename: 'chirotix.jpg',
+      path: './images/chirotix.png',
+      cid: 'chiroTix@kreata.ee'
+    }
+  ]
   }
 
   // send mail using transporter
