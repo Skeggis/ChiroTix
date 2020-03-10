@@ -27,7 +27,12 @@ async function sendReceiptMail(link, from, to, subject, attachmentBuffer, orderD
     attachments:[{
       filename:"tickets.pdf",
       content: attachmentBuffer
-    }]
+    },{
+      filename: 'chirotix.jpg',
+      path: './images/chirotix.png',
+      cid: 'chiroTix@kreata.ee'
+    }
+  ]
   }
 
   // send mail using transporter
