@@ -92,9 +92,8 @@ export default function OrderDetails(props) {
           <div style={{ display: 'flex', width: '100%' }}>
 
             <div className='orderDetails__detailBlock'>
-              <h4>Credit card:</h4>
-              <p>Card number: <sup>************</sup>-{receipt.cardNumber}</p>
-              <p>Expiry date: {receipt.expiryDate}</p>
+              <h4>Payment</h4>
+              <p>Method: {receipt.paymentMethod}</p>
               <p>Amount: {Number(receipt.amount).toFixed(2)}$</p>
             </div>
 

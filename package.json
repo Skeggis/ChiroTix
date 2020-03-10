@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
+    "devconcurrent": "concurrently \"npm run dev\" \"nodemon worker.js\" \"cd client && npm run start\"",
     "test": "mocha -R spec --recursive --bail --exit=true",
     "testDb": "mocha --bail --exit=true ./test/database/*.test.js -R spec",
     "testApi": "env TEST=true mocha --bail --exit=true ./test/api/*.test.js -R spec",
@@ -31,6 +32,7 @@
     "bcryptjs": "^2.4.3",
     "bull": "^3.12.1",
     "cloudinary": "^1.18.1",
+    "concurrently": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

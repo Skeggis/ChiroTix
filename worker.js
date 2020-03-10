@@ -19,42 +19,39 @@ function start() {
 console.log("THERE")
   workQueue.process(maxJobsPerWorker, async (job) => {
     const data = job.data
+    const buyerInfo = data.buyerInfo
       //job.progress(progress)
     const paymentResult = await handlePayment(data.paymentOptions, data.insurance, data.tickets)
     console.log("MERE")
     if(!paymentResult.success){
         return {result: paymentResult, socketId: data.socketId}
     }
-    console.log(job.ticketTypes)
-
+console.log('info',job.data.buyerInfo)
     let receipt = {
-      cardNumber: '7721',
-      expiryDate: '03/22',
+      paymentMethod: 'Paypal',
       amount: paymentResult.price,
-      name: 'Róbert Ingi Huldarsson',
-      address: 'Álfaberg 24',
-      place: '221, Hafnarfjörður',
-      country: 'Iceland',
-      lines: data.ticketTypes
-  }
+      name: buyerInfo.name,
+      address: buyerInfo.address,
+      place: `${buyerInfo.zipCode}, ${buyerInfo.city}`,
+      lines: data.ticketTypes,
+      order: paymentResult.order
+  } //country?
 console.log("SAVEIT")
-    const result = await saveOrder(data.eventId, data.buyerId, data.tickets, data.buyerInfo, receipt, data.insurance, paymentResult.insurancePrice)
+    const result = await saveOrder(data.eventId, data.buyerId, data.tickets, data.buyerInfo, receipt, data.insurance, paymentResult.insurancePrice, paymentResult.price)
 console.log("SAVED")
     return { result, socketId: data.socketId }
   })
 }
 
-async function saveOrder(eventId, buyerId, tickets, buyerInfo, receipt, insurance, insurancePrice){
-  console.log('saveorder')
+async function saveOrder(eventId, buyerId, tickets, buyerInfo, receipt, insurance, insurancePrice, price){
   const buyingTicketsResponse = await ticketDb.buyTickets(eventId, buyerId, tickets, buyerInfo, receipt, insurance, insurancePrice)
   if (!buyingTicketsResponse.success) { return buyingTicketsResponse }
-  console.log('her2')
   let createPDFResponse = await createTicketsPDF({ eventInfo: buyingTicketsResponse.eventInfo, orderDetails:buyingTicketsResponse.orderDetails, chiroInfo: buyingTicketsResponse.chiroInfo })
   let pdfBuffer;//TODO: handle if pdf creation fails.
   if (createPDFResponse.success) { pdfBuffer = createPDFResponse.buffer }
   const orderId = buyingTicketsResponse.orderDetails.orderId
   buyingTicketsResponse.orderDetails.eventName = buyingTicketsResponse.eventInfo.name
-  console.log('her3')
+  buyingTicketsResponse.orderDetails.price = price
   sendReceiptMail(
       `${WEBSITE_URL}/orders/${orderId}`,
       'noreply@chirotix.com',
@@ -160,6 +157,11 @@ async function handlePaypalPayment(price, orderId, insurance){
   // 5. Validate the transaction details are as expected
   console.log(price)
   console.log(order.result.purchase_units[0].amount.value)
+  console.log('printing paypal order')
+  console.log(order)
+  console.log('ordername', order.result.payer.name)
+  console.log('orderaddress', order.result.payer.address)
+  console.log('purchase', order.result.purchase_units[0])
   if (order.result.purchase_units[0].amount.value !== parseFloat(price.totalPrice).toFixed(2)) {
     return BAD_REQUEST('You did not pay the expected amount')
   }
@@ -169,7 +171,7 @@ async function handlePaypalPayment(price, orderId, insurance){
 
   // 7. Return a successful response to the client
   console.log('ekki villa i handlepaypal')
-  return {success: true, price: order.result.purchase_units[0].amount.value, insurancePrice: price.insurancePrice};
+  return {success: true, price: order.result.purchase_units[0].amount.value, insurancePrice: price.insurancePrice, order};
 
 }
 
