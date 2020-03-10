@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from 'react'
 import OrderDetails from '../../Components/OrderDetails/OrderDetails'
 import axios from 'axios'
-import { notification } from 'antd'
+import { notification, Button } from 'antd'
 import Loader from '../../Components/Loader/Loader'
 
 export default function ReceiptPage(props) {
@@ -9,6 +9,7 @@ export default function ReceiptPage(props) {
   const [orderDetails, setOrderDetails] = useState({})
   const [chiroInfo, setChiroInfo] = useState({})
   const [loading, setLoading] = useState(true)
+  const [PDF, setPDF] = useState('')
 
   const {
     match
@@ -32,6 +33,7 @@ export default function ReceiptPage(props) {
       setOrderDetails(result.data.orderDetails)
       setChiroInfo(result.data.chiroInfo[0])
       setLoading(false)
+      setPDF(`${process.env.REACT_APP_SERVER_URL}/api/tickets/downloadMyTickets/${match.params.orderId}`)
     }
     fetchData()
   }, [])
@@ -49,7 +51,7 @@ export default function ReceiptPage(props) {
   return (
     <Fragment>
       <div style={{ marginTop: 30 }}>
-        <OrderDetails orderDetails={orderDetails} chiroInfo={chiroInfo} tickets={orderDetails.lines}/>
+        <OrderDetails orderDetails={orderDetails} chiroInfo={chiroInfo} tickets={orderDetails.lines} pdfHref = {PDF}/>
       </div>
     </Fragment>
   )

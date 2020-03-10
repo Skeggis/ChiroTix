@@ -361,7 +361,7 @@ function TicketsPage(props) {
         })
     }
 
-    setShowTimer(!!releaseTime && current !== 3)
+    setShowTimer(!!releaseTime && current !== 3 && current !== 0)
 
 
 
@@ -435,7 +435,8 @@ function TicketsPage(props) {
                 setPaypalProcessingLoading={setPaypalProcessingLoading}
             />
     } else if (current === 3) {
-        componentToShow = <OrderDetails orderDetails={orderDetails} chiroInfo={chiroInfo} tickets={ticketTypes} />
+        let pdfHref = `${process.env.REACT_APP_SERVER_URL}/api/tickets/downloadMyTickets/${orderDetails.orderId}`
+        componentToShow = <OrderDetails orderDetails={orderDetails} chiroInfo={chiroInfo} tickets={ticketTypes} pdfHref={pdfHref}/>
         ref.current.socket.disconnect(true)
     }
 

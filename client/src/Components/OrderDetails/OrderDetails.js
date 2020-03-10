@@ -11,7 +11,8 @@ export default function OrderDetails(props) {
   const {
     orderDetails,
     tickets,
-    chiroInfo
+    chiroInfo,
+    pdfHref
   } = props
 
   const receipt = orderDetails.receipt
@@ -25,6 +26,16 @@ export default function OrderDetails(props) {
 
   return (
     <div className='orderDetails'>
+      <div className="orderDetails__fixedContainer">
+      <div className='orderDetails__downloadButtonContainer'>
+          <Button
+            href={pdfHref}
+            target="_blank"
+          >
+            Tickets
+          </Button>
+        </div>
+      </div>
       <div className='orderDetails__container'>
         <Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" className='orderDetails__success' />
         <h1 style={{ fontWeight: 400 }}>We've received your order</h1>
@@ -120,14 +131,8 @@ export default function OrderDetails(props) {
 
       <div className='orderDetails__infoContainer'>
         <ShareButtons />
-
       </div>
-      <div className='orderDetails__downloadButtonContainer'>
-          <Button
-          >
-            Download Tickets
-          </Button>
-        </div>
+
     </div>
   )
 }

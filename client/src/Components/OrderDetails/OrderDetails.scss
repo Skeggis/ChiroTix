@@ -65,7 +65,14 @@
     justify-content: space-around;
   }
 
-  &__downloadButtonContainer{
+  &__fixedContainer{
+    position: fixed;
+    bottom: 15%;
+    right: 10%;
+    z-index: 1000;
+}
+
+&__downloadButtonContainer{
     margin-left: 10px;
     position: fixed;
     bottom: 30px;
@@ -73,6 +80,10 @@
 
     & .ant-btn{
       height: 50px;
+      width: 125px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-color: $secondaryColor;
       background-color: $secondaryColor;
       color: white;
