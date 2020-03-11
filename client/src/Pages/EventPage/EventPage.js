@@ -67,7 +67,7 @@ function EventPage(props) {
         const map = new mapboxgl.Map({
             container: mapRef.current,
             style: 'mapbox://styles/huldarsson/ck7l4phna02r61ijy1aa5ryke',
-            center: [lat, lng],
+            center: [lng, lat],
             zoom: 13,
         });
 
@@ -75,7 +75,7 @@ function EventPage(props) {
         el.className = 'EventPage__marker';
         // el.style.backgroundImage = "/marker.png"
         const marker = new mapboxgl.Marker(el)
-            .setLngLat([lat,lng])
+            .setLngLat([lng,lat])
             .addTo(map);
     }
 
