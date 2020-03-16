@@ -26,6 +26,7 @@ function EventItem(props) {
     //setIsHovering
   } = props
   const [isHovering, setIsHovering] = useState(false)
+  const ref = React.createRef()
 
 
   function handleMouseEnter() {
@@ -59,11 +60,16 @@ function EventItem(props) {
         setSelectedEvent({ id: -1 })
         setEventWasClosed(false)
         setOldRowNumber(-1)
+
+        console.log('test')
+
       } else {
         event.eventRowNumber = eventRowNumber
         event.eventColNumber = eventColNumber
         setSelectedEvent(event)
         setEventWasClosed(true)
+
+
       }
       console.log('her')
       setEventIsOpen(!eventIsOpen)
@@ -73,14 +79,41 @@ function EventItem(props) {
       if (selectedEvent.id === -1) {
 
         setEventWasClosed(true)
+
+        ref.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        })
+
       } else {
         setEventWasClosed(false)
       }
       event.eventRowNumber = eventRowNumber
       event.eventColNumber = eventColNumber
+      
       setSelectedEvent(event)
+
+  
     }
 
+  }
+
+  function getElementOffset(el) {
+    const rect = el.getBoundingClientRect();
+  
+    return {
+      top: rect.top + window.pageYOffset,
+      left: rect.left + window.pageXOffset,
+    };
+  }
+
+  const getOffsetTop = element => {
+    let offsetTop = 0;
+    while(element) {
+      offsetTop += element.offsetTop;
+      element = element.offsetParent;
+    }
+    return offsetTop;
   }
 
   const [textDisplay, setTextDisplay] = useState('flex')
@@ -169,6 +202,7 @@ console.log(event.name, event.isSoldOut, event.isSelling)
           </div>
         </div>
       </div>
+      <div ref={ref}></div>
     </div>
   )
 }
