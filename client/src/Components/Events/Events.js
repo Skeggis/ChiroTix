@@ -76,6 +76,8 @@ export default function Events(props) {
 
   const gutter = mobile ? 0 : [24, 32]
 
+
+
   return (
     <div className='events'>
       {eventRows.map((row, i) => (
@@ -107,8 +109,9 @@ export default function Events(props) {
               <Col span={24} >
 
                 {/* <div style={{ height: eventIsOpen && selectedEvent.eventRowNumber === i ? 450 : 0, position: 'relative' }} className='events__descriptionItem'> */}
-                <Collapse isOpened={selectedEvent.eventRowNumber === i}>
-                  <div className='events__descriptionWrapper'>
+              {/* <div style={{height:selectedEvent.eventRowNumber === i?550:0}} > */}
+                <Collapse isOpened={selectedEvent.eventRowNumber === i} >
+                  <div className='events__descriptionWrapper'  >
                     {row.map((event, j) => (
                       <div style={{ height: '100%', width: '100%', position: selectedEvent.id === event.id && eventIsOpen ? 'absolute' : 'absolute', display: selectedEvent.id === event.id && eventIsOpen ? '' : '', top: 0, left: 0, overflow: 'hidden', zIndex: selectedEvent.id === event.id && eventIsOpen ? 10 : 0 }}>
 
@@ -129,6 +132,7 @@ export default function Events(props) {
                   </div>
                 </Collapse>
                 {/* </div> */}
+                {/* // <div ref={myRefs[i]} ></div> */}
               </Col>
             )}
 

@@ -8,7 +8,7 @@ const CLIENT = {
   sandbox:
     "https://www.paypal.com/sdk/js?client-id=AdmeHDdVieCtGNml2iCNsWqGaWyPW_puc4XIPUifsXXHWXSU8ynPbbLAL5rTgh9rtvnAkztDsHQlZsGw&disable-funding=credit,card,venmo,sepa,bancontact,eps,giropay,ideal,mybank,p24,sofort",
   production:
-    "your_production_key"
+    "https://www.paypal.com/sdk/js?client-id=AdmeHDdVieCtGNml2iCNsWqGaWyPW_puc4XIPUifsXXHWXSU8ynPbbLAL5rTgh9rtvnAkztDsHQlZsGw&disable-funding=credit,card,venmo,sepa,bancontact,eps,giropay,ideal,mybank,p24,sofort"
 };
 
 const CLIENT_ID = process.env.NODE_ENV === "production" ? CLIENT.production : CLIENT.sandbox;
