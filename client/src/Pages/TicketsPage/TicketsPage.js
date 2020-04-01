@@ -26,7 +26,7 @@ let stepsInfo = [{
     title: "Receipt"
 }
 ]
-let defaultImage = '../../../tempDefaultImg.jpg'
+let defaultImage = '../../../lecture.jpg'
 function TicketsPage(props) {
     const {
         setTime,
